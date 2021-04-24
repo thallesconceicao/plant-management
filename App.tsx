@@ -1,7 +1,5 @@
-
 import React from 'react'
 import { Welcome } from './src/pages/Welcome'
-import { Text } from 'react-native'
 import AppLoading from 'expo-app-loading'
 import { 
   useFonts,
