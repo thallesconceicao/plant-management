@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/core'
 import React, { useState } from 'react'
 import { 
     SafeAreaView, 
@@ -20,6 +21,8 @@ export function UserIdentification(){
     const [isFilled, setIsFilled] = useState(false);
     const [name, setName] = useState<string>();
 
+    const navigation = useNavigation();
+
     function handleInputBlur(){
         setIsFocused(false);
         setIsFilled(!!name);
@@ -32,6 +35,11 @@ export function UserIdentification(){
     function handleInputChange(value: string){
         setIsFilled(!!value);
         setName(value)
+    }
+
+    function handleConfirmation(){
+        if(isFilled)
+            navigation.navigate("Confirmation");
     }
 
     return (
@@ -61,7 +69,9 @@ export function UserIdentification(){
                             onFocus={handleInputFocus}
                             onChangeText={handleInputChange}/>
                         <View style={styles.footer}>
-                            <Button title="Confirmar"></Button>
+                            <Button 
+                                title="Confirmar"
+                                onPress={handleConfirmation}></Button>
                         </View>
                     </View>
                 </View>
