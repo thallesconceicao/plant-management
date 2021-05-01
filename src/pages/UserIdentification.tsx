@@ -9,7 +9,8 @@ import {
     KeyboardAvoidingView,
     Platform,
     TouchableWithoutFeedback,
-    Keyboard
+    Keyboard,
+    Alert
 } from 'react-native'
 
 import { Button } from '../components/Button'
@@ -40,8 +41,10 @@ export function UserIdentification(){
     }
 
     function handleConfirmation(){
-        if(isFilled)
-            navigation.navigate("Confirmation");
+        if(!isFilled)
+            return Alert.alert("Por favor, informe seu nome!")
+        
+        navigation.navigate("Confirmation");
     }
 
     return (
