@@ -1,5 +1,6 @@
 import { useNavigation } from '@react-navigation/core'
 import React, { useState } from 'react'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 import { 
     SafeAreaView, 
     View,
@@ -37,13 +38,14 @@ export function UserIdentification(){
 
     function handleInputChange(value: string){
         setIsFilled(!!value);
-        setName(value)
+        setName(value);
     }
 
-    function handleConfirmation(){
+    async function handleConfirmation(){
         if(!isFilled)
-            return Alert.alert("Por favor, informe seu nome!")
+            return Alert.alert("Por favor, informe seu nome!");
         
+        await AsyncStorage.setItem('@plantmanager:user', (name || ''))
         navigation.navigate("Confirmation");
     }
 
