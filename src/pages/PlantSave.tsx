@@ -1,5 +1,5 @@
 import { CardStyleInterpolators } from '@react-navigation/stack';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     Alert,
     TouchableOpacity,
@@ -21,7 +21,7 @@ import waterdrop from '../assets/waterdrop.png'
 import colors from '../styles/colors';
 import fonts from '../styles/fonts';
 import { format, isBefore } from 'date-fns';
-import { PlantProps } from '../libs/storage';
+import { loadPlants, PlantProps, savePlant } from '../libs/storage';
 
 interface Params {
     plant : PlantProps
@@ -51,6 +51,21 @@ export function PlantSave(){
     function handleOpenDateTimePickerForAndroid(){
         setShowDatePicker(oldState => !oldState)
     }
+
+    async function handleSave(){
+        try{
+            await savePlant({
+                ...plant,
+                dateTimeNotification: selectedTimeDate
+            })
+        }catch{
+            Alert.alert('Não foi possivel salvar a planta 😞');
+        }
+    }
+
+    useEffect (() => {
+        
+    })
 
     return (
         <View style={styles.container}>
@@ -108,7 +123,7 @@ export function PlantSave(){
 
                 <Button
                     title='Cadastrar planta'
-                    onPress={() => {}}
+                    onPress={handleSave}
                     />
             </View>
         </View>
