@@ -55,7 +55,7 @@ export function Confirmation(){
                     {subtitle}
                 </Text>
                 <View style={styles.footer}>
-                    <Button  
+                    <Button 
                         title="Começar"
                         onPress={handleMoveOn}></Button>
                 </View>
